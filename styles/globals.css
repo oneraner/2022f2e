@@ -1,16 +1,33 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: jf;
+  src: url(../public/font/jf-openhuninn-1.1.ttf);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.radial-gradient {
+  background: radial-gradient(
+    64.25% 64.25% at 50% 50%,
+    #010b63 0.03%,
+    #01033d 59.94%,
+    #020128 100%
+  );
 }
 
-* {
-  box-sizing: border-box;
+.h1 {
+  -webkit-text-stroke: 1px #eefbff;
+  text-shadow: 0 0 5px #eefbff, 0 0 5px #eefbff, 0 0 5px #eefbff,
+    0 0 5px #eefbff;
+}
+
+.h2 {
+  -webkit-text-stroke: 1px #fdffa9;
+  text-shadow: 0 0 3px #fdffa9, 0 0 3px #fdffa9, 0 0 3px #fdffa9,
+    0 0 3px #fdffa9;
+}
+
+.card__number {
+  -webkit-text-stroke: 1px #eefbff;
 }
