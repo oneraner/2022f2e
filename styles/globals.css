@@ -31,3 +31,46 @@
 .card__number {
   -webkit-text-stroke: 1px #eefbff;
 }
+
+.card__border {
+  -webkit-text-stroke: 1px #fff;
+}
+
+.card__shadow {
+  box-shadow: 0 0 10px #fdffa9;
+}
+
+.ball1 {
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #ec6a6a 0%,
+    rgba(236, 106, 106, 0) 100%
+  );
+  filter: blur(2px);
+}
+
+.ball2 {
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #ecdf6a 0%,
+    rgba(236, 223, 106, 0) 100%
+  );
+  filter: blur(2px);
+}
+
+.ball3 {
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #ecdf6a 0%,
+    rgba(236, 223, 106, 0) 100%
+  );
+  filter: blur(2px);
+}
+
+.ball4 {
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #9affff 0%,
+    rgba(154, 255, 255, 0) 100%
+  );
+}

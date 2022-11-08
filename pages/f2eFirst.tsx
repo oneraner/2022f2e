@@ -5,6 +5,8 @@ import Banner from "../components/first/Banner";
 import SumbitQuestion from "../components/first/SubmitQuestion";
 import ProblemSolving from "../components/first/ProblemSolving";
 import Solution from "../components/first/Solution";
+import Description from "../components/first/Description";
+import Game from "../components/first/Game";
 
 export const Animation = () => {
   return (
@@ -13,6 +15,8 @@ export const Animation = () => {
       <SumbitQuestion />
       <ProblemSolving />
       <Solution />
+      <Description />
+      <Game/>
     </>
   );
 };
