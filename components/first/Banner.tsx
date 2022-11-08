@@ -16,12 +16,12 @@ export const Banner = () => {
       textShadow: `0 0 20px #eefbff, 0 0 20px #eefbff, 0 0 20px #eefbff,
           0 0 20px #eefbff`,
     });
-    const h2 = gsap.timeline({ duration: 1, repeat: -1, yoyo: true });
-    h2.to(".h2", {
+    const h3 = gsap.timeline({ duration: 1, repeat: -1, yoyo: true });
+    h3.to(".h3", {
       textShadow: `0 0 10px #fdffa9, 0 0 10px #fdffa9, 0 0 10px #fdffa9,
             0 0 10px #fdffa9`,
     });
-    h2.to(".h2", {
+    h3.to(".h3", {
       textShadow: `0 0 20px #fdffa9, 0 0 20px #fdffa9, 0 0 20px #fdffa9,
             0 0 20px #fdffa9`,
     });
@@ -34,9 +34,9 @@ export const Banner = () => {
           <h1 className="text-[6rem] font-jf mb-10 h1 relative text-[#14153e]">
             The F2E 4th
           </h1>
-          <h2 className="font-jf mb-10 h2 text-[#504552] text-[4rem]">
+          <h3 className="font-jf mb-10 h3 text-[#504552] text-[4rem]">
             互動網頁設計
-          </h2>
+          </h3>
           <div className="text-white flex flex-col justify-center items-center">
             <p>UI 設計師 x 前端工程師最強合作，</p>
             <p>三大主題來襲網頁互動關卡</p>

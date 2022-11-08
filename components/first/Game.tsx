@@ -26,12 +26,12 @@ export const Game = () => {
       <div className="max-w-[1440px] w-full flex flex-col items-center pt-24">
         <div className="flex justify-center mb-20">
           <Image src={leftHand} alt="leftHand" className="mr-12" />
-          <div className="flex flex-col justify-center mr-12">
-            <p className="h2 text-5xl">區區修煉已經無法滿足了嗎？</p>
-            <p className="h2 text-5xl text-center">
+          <h3 className="flex flex-col justify-center mr-12">
+            <p className="h3 text-5xl">區區修煉已經無法滿足了嗎？</p>
+            <p className="h3 text-5xl text-center">
               還有<span className="text-6xl">比賽</span>等著你！
             </p>
-          </div>
+          </h3>
           <Image src={rightHand} alt="rightHand" />
         </div>
         <div className="max-w-[1280px] flex flex-col border border-solid border-[#FFBFFC] p-8 rounded-[20px]">
@@ -53,7 +53,6 @@ export const Game = () => {
           navigation={{ prevEl: "navigationPrev", nextEl: "navigationNext" }}
           modules={[Navigation, Autoplay]}
           loop={true}
-          onSlideChange={(val) => console.log("slide change", val)}
           onBeforeInit={(swiper) => {
             swiperRef.current = swiper;
           }}

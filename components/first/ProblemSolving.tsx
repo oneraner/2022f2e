@@ -9,17 +9,29 @@ import wall from "../../public/image/wall.png";
 import lightWall from "../../public/image/lightWall.png";
 
 export const ProblemSolving = () => {
+  useEffect(() => {
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#problem",
+        start: "top center+=200",
+        end: "top top+=200",
+        scrub: 1,
+      },
+      defaults: { duration: 10, ease: "sine" },
+    });
+    tl.fromTo("#wall", { y: 1000 }, { y: 0 });
+  }, []);
   return (
     <div className="bg-[#061b34] flex justify-center h-screen relative overflow-hidden">
-      <div className="max-w-[1440px] flex items-center flex-col pt-24">
-        <div className="font-jf mb-10 h2 text-[#14153e] text-[3rem] flex items-end">
+      <div className="max-w-[1440px] flex items-center justify-between flex-col pt-24">
+        <h3 id="problem" className="font-jf mb-10 h3 text-[#14153e] text-[3rem] flex items-end">
           年度最強合作，<span className="text-[4rem]">三大</span>主題來襲
-        </div>
+        </h3>
         <p className="text-white">
           各路廠商強強聯手，共同設計出接地氣的網頁互動挑戰關卡
         </p>
-        <Image src={wall} alt="wall" />
-        <Image src={lightWall} alt="wall" className="absolute bottom-0" />
+        <Image src={wall} alt="wall"/>
+        <Image id="wall" src={lightWall} alt="wall" className="absolute left-0 bottom-0" />
       </div>
       <Image
         src={yellowStar}

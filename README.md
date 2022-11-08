@@ -22,12 +22,18 @@ open http://localhost:3000/
 ### 使用技術
 
 Next.js
+
 TailwindCSS
+
 TypeScript
+
 Gsap
+
 Animated-number-react
+
 Swiper
 ### 作者
 
 設計師: [Lan Hsu](https://www.behance.net/alena0528a)
+
 前端工程師: [Jeff Chao](https://github.com/oneraner)

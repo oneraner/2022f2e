@@ -6,9 +6,30 @@ import card2 from "../../public/image/card2.png";
 import card3 from "../../public/image/card3.png";
 
 export const Solution = () => {
+  useEffect(() => {
+    const tl = gsap.timeline({ duration: 3, repeat: -1, yoyo: true });
+    tl.to(".ball1", {
+      scale: 1.3,
+    });
+    tl.to(".ball1", {
+      scale: 1,
+    });
+    tl.to(".ball3", {
+      scale: 1.3,
+    });
+    tl.to(".ball3", {
+      scale: 1,
+    });
+    tl.to(".ball4", {
+      scale: 1.3,
+    });
+    tl.to(".ball4", {
+      scale: 1,
+    });
+  }, []);
   return (
     <div className="flex justify-center min-h-screen relative bg-[url('../public/image/brickWall.png')]">
-      <div className="max-w-[1440px] w-full flex flex-col pt-24 lg:pt-12">
+      <div className="max-w-[1440px] w-full flex flex-col pt-24 lg:pt-12 lg:pb-12">
         <div className="w-full flex mb-7">
           <div className="max-w-[510px] lg:max-w-[1005px] lg:w-[1005px] border-[3px] border-solid border-[#FDFFA9] rounded-[20px] flex flex-col-reverse lg:flex-row items-center justify-between relative px-4 lg:px-24 py-[60px] card__shadow">
             <Image
