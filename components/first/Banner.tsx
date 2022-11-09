@@ -28,13 +28,13 @@ export const Banner = () => {
   }, []);
 
   return (
-    <div className="radial-gradient flex justify-center pt-20 h-screen">
-      <div className="max-w-[1440px] flex justify-center">
-        <div className="flex flex-col justify-center items-center w-1/2 relative">
-          <h1 className="text-[6rem] font-jf mb-10 h1 relative text-[#14153e]">
+    <div className="radial-gradient flex justify-center lg:pt-20 min-h-screen">
+      <div className="max-w-[1440px] flex flex-col lg:flex-row justify-center">
+        <div className="flex flex-col justify-center items-center lg:w-1/2 relative mb-7 lg:mb-0">
+          <h1 className="text-5xl lg:text-[6rem] font-jf mb-10 h1 relative text-[#14153e]">
             The F2E 4th
           </h1>
-          <h3 className="font-jf mb-10 h3 text-[#504552] text-[4rem]">
+          <h3 className="font-jf mb-10 h3 text-[#504552] text-4xl lg:text-[4rem]">
             互動網頁設計
           </h3>
           <div className="text-white flex flex-col justify-center items-center">
@@ -45,16 +45,16 @@ export const Banner = () => {
           <Image
             src={lightning}
             alt="lightning"
-            className="absolute top-12 left-0"
+            className="absolute top-[-15%] lg:top-[20%] left-0 w-12 lg:w-16 h-16 lg:h-24"
           />
-          <Image src={light} alt="light" className="absolute top-16 -right-4" />
+          <Image src={light} alt="light" className="hidden lg:block absolute top-[20%] -right-4" />
           <Image
             src={lightning}
             alt="lightning"
-            className="absolute bottom-0 right-24"
+            className="absolute bottom-[30%] lg:bottom-[20%] right-[5%] lg:right-0 w-12 lg:w-16 h-16 lg:h-24"
           />
         </div>
-        <div className="w-1/2">
+        <div className="lg:w-1/2 flex justify-center items-center">
           <Image src={board} alt="board" />
         </div>
       </div>

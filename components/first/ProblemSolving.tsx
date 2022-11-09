@@ -22,12 +22,12 @@ export const ProblemSolving = () => {
     tl.fromTo("#wall", { y: 1000 }, { y: 0 });
   }, []);
   return (
-    <div className="bg-[#061b34] flex justify-center h-screen relative overflow-hidden">
-      <div className="max-w-[1440px] flex items-center justify-between flex-col pt-24">
-        <h3 id="problem" className="font-jf mb-10 h3 text-[#14153e] text-[3rem] flex items-end">
-          年度最強合作，<span className="text-[4rem]">三大</span>主題來襲
+    <div className="bg-[#061b34] flex justify-center lg:h-screen relative overflow-hidden">
+      <div className="max-w-[1440px] flex items-center justify-between flex-col pt-12 lg:pt-24">
+        <h3 id="problem" className="font-jf mb-10 h3 text-[#14153e] text-2xl lg:text-[3rem] flex items-end">
+          年度最強合作，<span className="text-3xl lg:text-[4rem]">三大</span>主題來襲
         </h3>
-        <p className="text-white">
+        <p className="text-white font-jf text-xl lg:text-base mx-10 lg:mx-0 mb-36 lg:mb-0">
           各路廠商強強聯手，共同設計出接地氣的網頁互動挑戰關卡
         </p>
         <Image src={wall} alt="wall"/>
@@ -36,39 +36,39 @@ export const ProblemSolving = () => {
       <Image
         src={yellowStar}
         alt="yellowStar"
-        className="absolute top-14 left-0"
+        className="hidden lg:block absolute top-14 left-0"
       />
-      <Image src={orangeStar} alt="star" className="absolute top-44 -left-2" />
-      <Image src={orangeStar} alt="star" className="absolute top-36 left-36" />
+      <Image src={orangeStar} alt="star" className="absolute top-[35%] lg:top-44 -right-4 lg:-left-2" />
+      <Image src={orangeStar} alt="star" className="absolute top-[50%] lg:top-36 right-[15%] lg:left-36" />
       <Image
         src={orangeStar}
         alt="star"
-        className="absolute top-[248px] left-[180px]"
-      />
-      <Image
-        src={orangeStar}
-        alt="star"
-        className="absolute top-12 left-[20%]"
+        className="absolute top-[20%] lg:top-[248px] left-0 lg:left-[180px]"
       />
       <Image
         src={orangeStar}
         alt="star"
-        className="absolute top-36 left-[18%]"
+        className="hidden lg:block absolute top-12 left-[20%]"
       />
       <Image
         src={orangeStar}
         alt="star"
-        className="absolute top-56 left-[24%]"
+        className="absolute top-[40%] lg:top-36 -left-4 lg:left-[18%]"
+      />
+      <Image
+        src={orangeStar}
+        alt="star"
+        className="absolute top-[60%] lg:top-56 left-[20%] lg:left-[24%]"
       />
       <Image
         src={cloud}
         alt="cloud"
-        className="absolute top-[290px] left-36 text-[#EFEDED]"
+        className="absolute top-[45%] lg:top-[290px] left-[3%] lg:left-36 w-12 lg:w-32 h-7 lg:h-16 text-[#EFEDED]"
       />
       <Image
         src={yellowStar}
         alt="yellowStar"
-        className="absolute top-[5%] right-[5%] text-yellow-500"
+        className="hidden lg:block absolute top-[5%] right-[5%] text-yellow-500"
       />
       <Image
         src={orangeStar}
@@ -78,32 +78,32 @@ export const ProblemSolving = () => {
       <Image
         src={orangeStar}
         alt="star"
-        className="absolute top-[8%] right-[13%]"
+        className="hidden lg:block absolute top-[8%] right-[13%]"
       />
       <Image
         src={orangeStar}
         alt="star"
-        className="absolute top-[24%] right-[8%]"
+        className="hidden lg:block absolute top-[24%] right-[8%]"
       />
       <Image
         src={orangeStar}
         alt="star"
-        className="absolute top-[5%] right-[22%]"
+        className="hidden lg:block absolute top-[5%] right-[22%]"
       />
       <Image
         src={orangeStar}
         alt="star"
-        className="absolute top-[20%] right-[18%]"
+        className="hidden lg:block absolute top-[20%] right-[18%]"
       />
       <Image
         src={orangeStar}
         alt="star"
-        className="absolute top-[30%] right-[25%]"
+        className="hidden lg:block absolute top-[30%] right-[25%]"
       />
       <Image
         src={cloud}
         alt="cloud"
-        className="absolute top-[220px] right-36 text-[#EFEDED]"
+        className="absolute top-[60%] lg:top-[220px] right-[5%] lg:right-36 w-12 lg:w-32 h-7 lg:h-16 text-[#EFEDED]"
       />
     </div>
   );

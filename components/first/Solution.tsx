@@ -28,7 +28,7 @@ export const Solution = () => {
     });
   }, []);
   return (
-    <div className="flex justify-center min-h-screen relative bg-[url('../public/image/brickWall.png')]">
+    <div className="flex justify-center min-h-screen pb-24 lg:pb-16 relative bg-[url('../public/image/brickWall.png')]">
       <div className="max-w-[1440px] w-full flex flex-col pt-24 lg:pt-12 lg:pb-12">
         <div className="w-full flex mb-7">
           <div className="max-w-[510px] lg:max-w-[1005px] lg:w-[1005px] border-[3px] border-solid border-[#FDFFA9] rounded-[20px] flex flex-col-reverse lg:flex-row items-center justify-between relative px-4 lg:px-24 py-[60px] card__shadow">
