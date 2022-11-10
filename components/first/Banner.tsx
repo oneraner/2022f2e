@@ -47,7 +47,11 @@ export const Banner = () => {
             alt="lightning"
             className="absolute top-[-15%] lg:top-[20%] left-0 w-12 lg:w-16 h-16 lg:h-24"
           />
-          <Image src={light} alt="light" className="hidden lg:block absolute top-[20%] -right-4" />
+          <Image
+            src={light}
+            alt="light"
+            className="hidden lg:block absolute top-[20%] -right-4"
+          />
           <Image
             src={lightning}
             alt="lightning"
@@ -55,7 +59,7 @@ export const Banner = () => {
           />
         </div>
         <div className="lg:w-1/2 flex justify-center items-center">
-          <Image src={board} alt="board" />
+          <Image src={board} alt="board" priority />
         </div>
       </div>
     </div>

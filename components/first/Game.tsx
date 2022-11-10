@@ -108,7 +108,7 @@ export const Game = () => {
                     <Image src={gold} alt="gold" />
                     {isActive && (
                       <div className="flex flex-col justify-center items-center ml-6">
-                        <p className="flex text-white text-3xl mr-4">
+                        <div className="flex text-white text-3xl mr-4">
                           NT
                           <AnimatedNumber
                             value={isActive ? 3000 : 0}
@@ -122,7 +122,7 @@ export const Game = () => {
                             includeComma
                           />
                           /位
-                        </p>
+                        </div>
                         <p className="text-[#bdbdbd]">(共六位)</p>
                       </div>
                     )}
@@ -209,7 +209,7 @@ export const Game = () => {
                     <Image src={money} alt="money" />
                     {isActive && (
                       <div className="flex flex-col justify-center items-center">
-                        <p className="text-white text-3xl mr-4">
+                        <div className="text-white text-3xl mr-4">
                           NT
                           <AnimatedNumber
                             value={isActive ? 10000 : 0}
@@ -223,7 +223,7 @@ export const Game = () => {
                             includeComma
                           />
                           /組
-                        </p>
+                        </div>
                         <p className="text-[#bdbdbd]">(共三組)</p>
                       </div>
                     )}
