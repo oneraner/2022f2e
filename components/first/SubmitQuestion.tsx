@@ -11,6 +11,7 @@ import right_circle from "../../public/image/right_circle.svg";
 import left_circle from "../../public/image/left_circle.svg";
 
 export const SumbitQuestion = () => {
+  
   useEffect(() => {
     let tl = gsap.timeline({
       scrollTrigger: {
@@ -24,6 +25,7 @@ export const SumbitQuestion = () => {
     tl.fromTo("#animation", { opacity: 0 }, { opacity: 1 });
     tl.fromTo("#wish", { opacity: 0 }, { opacity: 1, delay: 5 });
     tl.fromTo("#tree", { opacity: 0 }, { opacity: 1, delay: 10 });
+
   }, []);
   return (
     <div className="bg-[#061b34] flex justify-center min-h-screen relative overflow-hidden">

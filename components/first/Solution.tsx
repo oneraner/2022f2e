@@ -7,7 +7,7 @@ import card3 from "../../public/image/card3.png";
 
 export const Solution = () => {
   useEffect(() => {
-    const tl = gsap.timeline({ duration: 3, repeat: -1, yoyo: true });
+    const tl = gsap.timeline({ duration: 2, repeat: -1, yoyo: true });
     tl.to(".ball1", {
       scale: 1.3,
     });

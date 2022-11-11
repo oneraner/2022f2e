@@ -1,5 +1,7 @@
 ### 作品說明
-f2e 第一周
+2022 f2e
+第一周 /f2eFirst
+第二周 /f2eSecond
 
 ### 系統說明
 
@@ -19,7 +21,7 @@ open http://localhost:3000/
   - 放 CSS
 * tailwind.config.js
   - 放 tailwind setting
-### 使用技術
+### 使用技術及套件
 
 Next.js
 
@@ -32,8 +34,14 @@ Gsap
 Animated-number-react
 
 Swiper
+
+Zustand
 ### 作者
 
-設計師: [Lan Hsu](https://www.behance.net/alena0528a)
+第一關設計師: [Lan Hsu](https://www.behance.net/alena0528a)
+
+第二關設計師：
+
+第三關設計師：
 
 前端工程師: [Jeff Chao](https://github.com/oneraner)
