@@ -1,13 +1,19 @@
-export const Modal = ({ isOpen, onDismiss }) => {
+import { Children } from "react";
+import Button from "./Button";
+
+export const Modal = ({ isOpen, onDismiss, children }) => {
   return (
     <>
       {isOpen && (
-        <dialog
-          className="flex justify-center items-center w-screen h-screen bg-black/40 absolute top-0 left-0 z-50"
+        <div
+          className="fixed top-0 left-0 w-screen h-screen bg-black/50 z-40"
           onClick={onDismiss}
         >
-          <div className="bg-white">test</div>
-        </dialog>
+          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col bg-[#F0F0F0] z-50 py-6 px-14 rounded-3xl">
+            <div className="mb-7">{children}</div>
+            <div><Button>確定</Button></div>
+          </div>
+        </div>
       )}
     </>
   );
