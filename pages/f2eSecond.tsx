@@ -15,9 +15,7 @@ import girl2 from "../public/image/secondGirl2.png";
 import man from "../public/image/secondMan.png";
 import { useRouter } from 'next/router'
 
-const Pdf = dynamic(() => import("../components/second/Pdf"), {
-  ssr: false,
-});
+
 
 export const Canvas = () => {
   const router = useRouter()

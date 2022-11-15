@@ -4,11 +4,13 @@ import docs from "../../public/image/docs.png";
 import Button from "./Button";
 import { useRef, useState } from "react";
 import Modal from "./Modal";
+import { useRouter } from 'next/router'
 
 export const Upload = () => {
   const { setPdf } = usePdfStore();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter()
 
   const handleUploadPdf = (data: File) => {
     if (data.size > 1024 * 1024 * 10) {
@@ -16,6 +18,7 @@ export const Upload = () => {
       return;
     }
     setPdf(data);
+    router.push('/editPdf')
   };
 
   return (
