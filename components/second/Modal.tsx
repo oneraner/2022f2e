@@ -9,7 +9,7 @@ interface ModalProps {
 }
 
 interface ButtonType {
-  confirm:"confirm"
+  confirm: "confirm";
 }
 
 export const Modal = ({
@@ -23,13 +23,14 @@ export const Modal = ({
       {isOpen && (
         <div
           className="fixed top-0 left-0 w-screen h-screen bg-black/50 z-40"
-          onClick={onDismiss}
+          // onClick={onDismiss}
         >
-          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col bg-[#F0F0F0] z-50 py-6 px-14 rounded-3xl">
+          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col bg-[#F0F0F0] z-50 rounded-3xl">
             <div className="mb-7">{children}</div>
-            {buttonList.length > 0 && buttonList.includes('confirm') && (
+            {buttonList.length > 0 && buttonList.includes("confirm") && (
               <div>
-                <Button>確定</Button>
+                <Button onClick={() => onDismiss()}>確定</Button>
+                <button onClick={() => onDismiss()}>取消</button>
               </div>
             )}
           </div>

@@ -78,3 +78,14 @@ html {
     rgba(154, 255, 255, 0) 100%
   );
 }
+
+input[type="color"] {
+  height: 0;
+  border: 0;
+  background-color: transparent;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  background-color: transparent !important;
+  border: 0;
+}

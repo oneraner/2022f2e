@@ -13,6 +13,7 @@ import calendar from "../../public/image/calendar.svg";
 import text from "../../public/image/text.svg";
 import Button from "./Button";
 import Modal from "./Modal";
+import CreateSign from "./CreateSign";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -21,8 +22,10 @@ export const Pdf = () => {
   const { pdf } = usePdfStore();
   const [currentPages, setCurrentPages] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [signList, setSignList] = useState(false);
   const [mapSize, setMapSize] = useState(0);
+
+  const [signList, setSignList] = useState(false);
+  const [createSign, setCreateSign] = useState(true);
 
   const divRef = useRef<HTMLDivElement | null>(null);
   const pageRef = useRef<Map<number, string>>(new Map());
@@ -52,7 +55,6 @@ export const Pdf = () => {
       ref={divRef}
       onScroll={e => {
         if (!butterRef.current) return;
-        console.log("runrun");
         const currentPositon = (e.target as Element).scrollTop;
         const readedQuantity = pagePosition.filter(
           item => item < currentPositon
@@ -135,7 +137,11 @@ export const Pdf = () => {
             </button>
           </li>
           <li className="flex justify-around items-center mr-20">
-            <button type="button" className="flex flex-col items-center  mr-6">
+            <button
+              type="button"
+              className="flex flex-col items-center mr-6"
+              onClick={() => setCreateSign(true)}
+            >
               <Image src={pancel} alt="pancel" className="mb-1" />
               <span className="text-xs text-[#B7B7B7]">簽名</span>
             </button>
@@ -158,7 +164,22 @@ export const Pdf = () => {
         </ul>
       </div>
       <Modal isOpen={signList} onDismiss={() => setSignList(false)}>
-        <div></div>
+        <div className="bg-[#F0F0F0] rounded-2xl w-[320px]">
+          <div className="flex justify-center text-[#1C8B6A] mb-3">
+            請選擇簽名
+          </div>
+          <ul className="mb-3">
+            <li>
+              <div className="bg-white h-16"></div>
+            </li>
+          </ul>
+          <button type="button" className="flex justify-start text-[#1C8B6A]">
+            +新增簽名
+          </button>
+        </div>
+      </Modal>
+      <Modal isOpen={createSign} onDismiss={() => setCreateSign(false)}>
+        <CreateSign />
       </Modal>
     </div>
   );
