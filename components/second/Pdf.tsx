@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import usePdfStore from "../../zustand/store";
 import { Document, Page, pdfjs } from "react-pdf";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import rightArrow from "../../public/image/rightArrow.png";
 import leftArrow from "../../public/image/leftArrow.png";
@@ -16,6 +17,7 @@ import Modal from "./Modal";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 export const Pdf = ({ pages, setPagePositon }) => {
+  const router = useRouter();
   const { pdf } = usePdfStore();
   const [currentPages, setCurrentPages] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -55,6 +57,12 @@ export const Pdf = ({ pages, setPagePositon }) => {
         onLoadSuccess={({ numPages }) => {
           setTotalPages(numPages);
         }}
+        noData={
+          <div className="flex flex-col justify-center items-center h-screen">
+            <p className="mb-4">目前沒有上傳的 PDF，請重新上傳</p>
+            <Button onClick={() => router.push("/f2eSecond")}>回到首頁</Button>
+          </div>
+        }
       >
         {Array.from({ length: totalPages }, (_item, index) => (
           <Page
@@ -69,13 +77,33 @@ export const Pdf = ({ pages, setPagePositon }) => {
       <div className="fixed bottom-0 left-0 w-full bg-white">
         <ul className="flex justify-center ">
           <li className="flex justify-around items-center px-4 my-4 h-14 bg-white shadow-[1px_4px_6px_rgba(0,0,0,0.3)] rounded-2xl mr-2.5">
-            <button type="button" className="mr-8">
+            <button
+              type="button"
+              className="mr-8"
+              onClick={() => {
+                console.log(
+                  "pageRef.current[currentPages - 1]",
+                  pageRef.current.get(currentPages - 1),
+                  typeof pageRef.current.get(currentPages - 1)
+                );
+                window.scrollTo({
+                  top: Number(pageRef.current.get(currentPages - 1)),
+                  behavior: "smooth",
+                });
+                setCurrentPages(currentPages - 1);
+              }}
+            >
               <Image src={leftArrow} alt="leftArrow" />
             </button>
             <p className="mr-8">
               {currentPages} / {totalPages}
             </p>
-            <button type="button">
+            <button
+              type="button"
+              onClick={() => {
+                setCurrentPages(currentPages + 1);
+              }}
+            >
               <Image src={rightArrow} alt="rightArrow" />
             </button>
           </li>
