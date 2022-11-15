@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'jf';
+  font-family: "jf";
   src: url(../public/font/jf-openhuninn-1.1.ttf);
+}
+
+html {
+  overflow: hidden;
 }
 
 .radial-gradient {

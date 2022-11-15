@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import usePdfStore from "../../zustand/store";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useRouter } from "next/router";
@@ -16,7 +16,7 @@ import Modal from "./Modal";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
-export const Pdf = ({ pages, setPagePositon }) => {
+export const Pdf = () => {
   const router = useRouter();
   const { pdf } = usePdfStore();
   const [currentPages, setCurrentPages] = useState(1);
@@ -24,20 +24,17 @@ export const Pdf = ({ pages, setPagePositon }) => {
   const [signList, setSignList] = useState(false);
   const [mapSize, setMapSize] = useState(0);
 
-  const divRef = useRef(null);
+  const divRef = useRef<HTMLDivElement | null>(null);
   const pageRef = useRef<Map<number, string>>(new Map());
+  const butterRef = useRef(true);
 
-  useEffect(() => {
+  const pagePosition = useMemo(() => {
     const postionArray: number[] = [];
-    pageRef.current.forEach((item) => {
+    pageRef.current.forEach(item => {
       postionArray.push(Number(item));
     });
-    setPagePositon(postionArray);
-  }, [mapSize, setPagePositon]);
-
-  useEffect(() => {
-    setCurrentPages(pages);
-  }, [pages]);
+    return postionArray;
+  }, [mapSize]);
 
   const setPageRef = (index: number) => (node: any) => {
     const map = pageRef.current;
@@ -50,7 +47,23 @@ export const Pdf = ({ pages, setPagePositon }) => {
   };
 
   return (
-    <div className="bg-[#f0f0f0]" ref={divRef}>
+    <div
+      className="w-full flex justify-center h-screen overflow-scroll bg-[#f0f0f0] scroll-smooth"
+      ref={divRef}
+      onScroll={e => {
+        if (!butterRef.current) return;
+        console.log("runrun");
+        const currentPositon = (e.target as Element).scrollTop;
+        const readedQuantity = pagePosition.filter(
+          item => item < currentPositon
+        );
+        if (readedQuantity.length === 0) {
+          setCurrentPages(1);
+          return;
+        }
+        setCurrentPages(readedQuantity.length);
+      }}
+    >
       <Document
         file={pdf}
         className="pb-28"
@@ -81,16 +94,14 @@ export const Pdf = ({ pages, setPagePositon }) => {
               type="button"
               className="mr-8"
               onClick={() => {
-                console.log(
-                  "pageRef.current[currentPages - 1]",
-                  pageRef.current.get(currentPages - 1),
-                  typeof pageRef.current.get(currentPages - 1)
+                if (!divRef.current || currentPages < 1) return;
+                butterRef.current = true;
+                divRef.current.scrollTo(
+                  0,
+                  Number(pageRef.current.get(currentPages - 1))
                 );
-                window.scrollTo({
-                  top: Number(pageRef.current.get(currentPages - 1)),
-                  behavior: "smooth",
-                });
                 setCurrentPages(currentPages - 1);
+                butterRef.current = false;
               }}
             >
               <Image src={leftArrow} alt="leftArrow" />
@@ -101,7 +112,14 @@ export const Pdf = ({ pages, setPagePositon }) => {
             <button
               type="button"
               onClick={() => {
+                if (!divRef.current || currentPages > totalPages) return;
+                butterRef.current = true;
+                divRef.current.scrollTo(
+                  0,
+                  Number(pageRef.current.get(currentPages + 1))
+                );
                 setCurrentPages(currentPages + 1);
+                butterRef.current = false;
               }}
             >
               <Image src={rightArrow} alt="rightArrow" />
