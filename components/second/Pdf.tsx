@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import {  useMemo, useRef, useState } from "react";
 import usePdfStore from "../../zustand/store";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useRouter } from "next/router";
@@ -25,7 +25,7 @@ export const Pdf = () => {
   const [mapSize, setMapSize] = useState(0);
 
   const [signList, setSignList] = useState(false);
-  const [createSign, setCreateSign] = useState(true);
+  const [createSign, setCreateSign] = useState(false);
 
   const divRef = useRef<HTMLDivElement | null>(null);
   const pageRef = useRef<Map<number, string>>(new Map());
@@ -179,7 +179,7 @@ export const Pdf = () => {
         </div>
       </Modal>
       <Modal isOpen={createSign} onDismiss={() => setCreateSign(false)}>
-        <CreateSign />
+        <CreateSign clientX={divRef.current?.clientWidth} clientY={divRef.current?.clientHeight}/>
       </Modal>
     </div>
   );
