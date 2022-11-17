@@ -1,9 +1,5 @@
-import dynamic from "next/dynamic";
-import { useState } from "react";
 import Footer from "../components/second/Footer";
-import Button from "../components/second/Button";
 import Header from "../components/second/Header";
-import Modal from "../components/second/Modal";
 import Upload from "../components/second/Upload";
 import Image from "next/image";
 import floor from "../public/image/floor.png";
@@ -13,18 +9,21 @@ import girl from "../public/image/secondGirl.png";
 import girl1 from "../public/image/secondGirl1.png";
 import girl2 from "../public/image/secondGirl2.png";
 import man from "../public/image/secondMan.png";
-import { useRouter } from 'next/router'
-
-
+import { useRouter } from "next/router";
 
 export const Canvas = () => {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <>
       <Header />
       <div className="flex justify-center items-center h-[calc(100vh_-_84px_-_48px)] relative">
         <div className="w-full relative max-w-[1036px] h-[558px] flex bg-[#F0F0F094]/[38] rounded-[34px]">
-          <button className="absolute -top-20 right-4 border-2 border-solid border-[#1C8B6A] text-[#1C8B6A] rounded-2xl py-2 px-8" onClick={()=>{router.push('/history')}}>
+          <button
+            className="absolute -top-20 right-4 border-2 border-solid border-[#1C8B6A] text-[#1C8B6A] rounded-2xl py-2 px-8"
+            onClick={() => {
+              router.push("/history");
+            }}
+          >
             歷史紀錄
           </button>
           <div className="w-1/2">

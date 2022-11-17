@@ -1,9 +1,8 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import Button from "./Button";
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite'
+import Modal from "./Modal";
 
-export const Canvas = ({ clientX, clientY }) => {
+export const CreateSign = ({ isOpen, onDismiss, clientX, clientY }) => {
   const [isPainting, setIsPainting] = useState(false);
   const [lineWidth, setLineWidth] = useState("5");
   const [mode, setMode] = useState<"write" | "import">("write");
@@ -67,98 +66,74 @@ export const Canvas = ({ clientX, clientY }) => {
     setLineWidth(e.target.value);
   };
 
-  const firebaseConfig = {
-    apiKey: process.env.API_KEY,
-    authDomain: process.env.AUTH_DOMAIN,
-    projectId: process.env.PROJECT_ID,
-    storageBucket: process.env.STORAGE_BUCKET,
-    messagingSenderId: process.env.MESSAGING_SENDER_ID,
-    appId: process.env.APP_ID,
-    measurementId: process.env.MEASUREMENT_ID,
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  async function getCities(db) {
-    const citiesCol = collection(db, 'sign');
-    const citySnapshot = await getDocs(citiesCol);
-    const cityList = citySnapshot.docs.map(doc => doc.data());
-    console.log('cityList',cityList)
-    return cityList;
-  }
-
-  useEffect(() => {
-    getCities(db)
-  },[db])
-
   return (
-    <section className="flex flex-col w-[590px] px-2.5 py-6">
-      <ul className="flex justify-center mb-6">
-        <li className={`${mode === "write" && "z-10"}`}>
-          <button
-            className={`w-[130px] h-10 ${
-              mode === "write"
-                ? "bg-[#35A483] text-white"
-                : "bg-white text-[#1C8B6A]"
-            }  rounded-2xl -mr-4`}
-            type="button"
-            onClick={() => setMode("write")}
-          >
-            手寫簽名
-          </button>
-        </li>
-        <li className={`${mode === "import" && "z-10"}`}>
-          <button
-            className={`w-[130px] h-10 ${
-              mode === "import"
-                ? "bg-[#35A483] text-white"
-                : "bg-white text-[#1C8B6A]"
-            }  rounded-2xl -mr-4`}
-            type="button"
-            onClick={() => {
-              alert("沒時間弄");
-              setMode("import");
-            }}
-          >
-            匯入簽名檔
-          </button>
-        </li>
-      </ul>
-      <div className="flex justify-between items-center mb-5">
-        <ul className="flex">
-          <li className="mr-2">
+    <Modal isOpen={isOpen} onDismiss={onDismiss}>
+      <section className="flex flex-col w-[590px] px-2.5 py-6">
+        <ul className="flex justify-center mb-6">
+          <li className={`${mode === "write" && "z-10"}`}>
             <button
+              className={`w-[130px] h-10 ${
+                mode === "write"
+                  ? "bg-[#35A483] text-white"
+                  : "bg-white text-[#1C8B6A]"
+              }  rounded-2xl -mr-4`}
               type="button"
-              onClick={() => {
-                changeColor("#000000");
-              }}
+              onClick={() => setMode("write")}
             >
-              <div className="w-8 h-8 rounded-full bg-black"></div>
+              手寫簽名
             </button>
           </li>
-          <li className="mr-2">
+          <li className={`${mode === "import" && "z-10"}`}>
             <button
+              className={`w-[130px] h-10 ${
+                mode === "import"
+                  ? "bg-[#35A483] text-white"
+                  : "bg-white text-[#1C8B6A]"
+              }  rounded-2xl -mr-4`}
               type="button"
               onClick={() => {
-                changeColor("#0014C7");
+                alert("沒時間弄");
+                setMode("import");
               }}
             >
-              <div className="w-8 h-8 rounded-full bg-[#0014C7]"></div>
-            </button>
-          </li>
-          <li className="mr-2">
-            <button
-              type="button"
-              onClick={() => {
-                changeColor("#CA0000");
-              }}
-            >
-              <div className="w-8 h-8 rounded-full bg-[#CA0000]"></div>
+              匯入簽名檔
             </button>
           </li>
         </ul>
-        {/* <div className="flex flex-col">
+        <div className="flex justify-between items-center mb-5">
+          <ul className="flex">
+            <li className="mr-2">
+              <button
+                type="button"
+                onClick={() => {
+                  changeColor("#000000");
+                }}
+              >
+                <div className="w-8 h-8 rounded-full bg-black"></div>
+              </button>
+            </li>
+            <li className="mr-2">
+              <button
+                type="button"
+                onClick={() => {
+                  changeColor("#0014C7");
+                }}
+              >
+                <div className="w-8 h-8 rounded-full bg-[#0014C7]"></div>
+              </button>
+            </li>
+            <li className="mr-2">
+              <button
+                type="button"
+                onClick={() => {
+                  changeColor("#CA0000");
+                }}
+              >
+                <div className="w-8 h-8 rounded-full bg-[#CA0000]"></div>
+              </button>
+            </li>
+          </ul>
+          {/* <div className="flex flex-col">
           <label htmlFor="stroke">
             <div className="w-8 h-8 rounded-full bg-black"></div>
           </label>
@@ -170,79 +145,103 @@ export const Canvas = ({ clientX, clientY }) => {
             onChange={(e) => changeColor(e)}
           />
         </div> */}
-        <div>
-          <label htmlFor="lineWidth" className="text-[#1C8B6A] mr-2">
-            調整文字寬度
-          </label>
-          <input
-            id="lineWidth"
-            name="lineWidth"
-            type="number"
-            value={lineWidth}
-            className="w-16 pl-4"
-            onChange={(e) => changeLineWidth(e)}
+          <div>
+            <label htmlFor="lineWidth" className="text-[#1C8B6A] mr-2">
+              調整文字寬度
+            </label>
+            <input
+              id="lineWidth"
+              name="lineWidth"
+              type="number"
+              value={lineWidth}
+              className="w-16 pl-4"
+              onChange={e => changeLineWidth(e)}
+            />
+          </div>
+          <button
+            type="button"
+            className="text-[#1C8B6A]"
+            onClick={() => clearCanvas()}
+          >
+            清除
+          </button>
+        </div>
+        <div className="bg-white w-full h-[200px] rounded-2xl relative mb-4">
+          {openPlaceholder && (
+            <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#B7B7B7]">
+              在此書寫你的簽名
+            </p>
+          )}
+          <canvas
+            ref={canvasRef}
+            width={570}
+            height={200}
+            onMouseDown={() => {
+              setIsPainting(true);
+              setOpenPlaceholder(false);
+            }}
+            onMouseMove={e => draw(e)}
+            onMouseUp={() => {
+              setIsPainting(false);
+              const ctx = canvasRef?.current?.getContext("2d");
+              if (ctx) {
+                ctx.stroke();
+                ctx.beginPath();
+              }
+            }}
           />
         </div>
-        <button
-          type="button"
-          className="text-[#1C8B6A]"
-          onClick={() => clearCanvas()}
-        >
-          清除
-        </button>
-      </div>
-      <div className="bg-white w-full h-[200px] rounded-2xl relative mb-4">
-        {openPlaceholder && (
-          <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[#B7B7B7]">
-            在此書寫你的簽名
-          </p>
-        )}
-        <canvas
-          ref={canvasRef}
-          width={570}
-          height={200}
-          onMouseDown={() => {
-            setIsPainting(true);
-            setOpenPlaceholder(false);
-          }}
-          onMouseMove={(e) => draw(e)}
-          onMouseUp={() => {
-            setIsPainting(false);
-            const ctx = canvasRef?.current?.getContext("2d");
-            if (ctx) {
-              ctx.stroke();
-              ctx.beginPath();
-            }
-          }}
-        />
-      </div>
-      <ul className="flex justify-center">
-        <li className="mr-2">
-          <button
-            className="border border-solid border-[#1C8B6A] rounded-3xl w-[165px] py-4"
-            onClick={() => {
-              clearCanvas();
-            }}
-          >
-            取消
-          </button>
-        </li>
-        <li>
-          <Button
-            size="medium"
-            className=""
-            onClick={() => {
-              if (!canvasRef.current) return;
-              const sign = canvasRef.current.toDataURL();
-              console.log("sign", sign);
-            }}
-          >
-            建立簽名
-          </Button>
-        </li>
-      </ul>
-    </section>
+        <ul className="flex justify-center">
+          <li className="mr-2">
+            <button
+              className="border border-solid border-[#1C8B6A] rounded-3xl w-[165px] py-4"
+              onClick={() => {
+                clearCanvas();
+                onDismiss();
+              }}
+            >
+              取消
+            </button>
+          </li>
+          <li>
+            <Button
+              size="medium"
+              className=""
+              onClick={() => {
+                if (!canvasRef.current) return;
+                const sign = canvasRef.current.toDataURL();
+                const sign1 = localStorage.getItem("sign1");
+                const sign2 = localStorage.getItem("sign2");
+                const sign3 = localStorage.getItem("sign3");
+                if (!sign1) {
+                  localStorage.setItem("sign1", sign);
+                  alert("成功儲存第一個簽名");
+                  onDismiss();
+                  return;
+                }
+                if (!sign2) {
+                  localStorage.setItem("sign2", sign);
+                  alert("成功儲存第二個簽名");
+                  onDismiss();
+                  return;
+                }
+                if (!sign3) {
+                  localStorage.setItem("sign3", sign);
+                  alert("成功儲存第三個簽名");
+                  onDismiss();
+                  return;
+                }
+                alert("簽名已滿,請先刪除既有簽名");
+                onDismiss();
+              }}
+            >
+              建立簽名
+            </Button>
+          </li>
+        </ul>
+      </section>
+    </Modal>
   );
 };
 
-export default Canvas;
+export default CreateSign;
