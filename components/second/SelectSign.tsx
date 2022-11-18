@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Modal from "./Modal";
 import Image from "next/image";
 import del from "../../public/image/delete.svg";
 import { useEffect, useState } from "react";
 
-export const SelectSign = ({ isOpen, onDismiss, buttonClick }) => {
+export const SelectSign = ({ isOpen, onDismiss, buttonClick, selectClick }) => {
   const [image1, setImage1] = useState(localStorage.getItem("sign1") ?? "");
   const [image2, setImage2] = useState(localStorage.getItem("sign2") ?? "");
   const [image3, setImage3] = useState(localStorage.getItem("sign3") ?? "");
@@ -27,9 +28,22 @@ export const SelectSign = ({ isOpen, onDismiss, buttonClick }) => {
         <ul className="mb-3">
           {image1 && (
             <li className="flex mb-2">
-              <div className="flex justify-center items-center bg-white w-[90%] h-16 mr-2 rounded-2xl">
-                <img src={image1} className="object-cover h-full" />
-              </div>
+              <button
+                className="flex justify-center items-center bg-white w-[90%] h-16 mr-2 rounded-2xl"
+                onClick={() => {
+                  selectClick(localStorage.getItem("sign1"));
+                  onDismiss();
+                }}
+              >
+                <div className="w-full h-full relative">
+                  <Image
+                    src={image1}
+                    alt="sign1"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </button>
               <button
                 type="button"
                 onClick={() => {
@@ -43,9 +57,22 @@ export const SelectSign = ({ isOpen, onDismiss, buttonClick }) => {
           )}
           {image2 && (
             <li className="flex mb-2">
-              <div className="flex justify-center items-center bg-white w-[90%] h-16 mr-2 rounded-2xl">
-                <img src={image2} className="object-cover h-full" />
-              </div>
+              <button
+                className="flex justify-center items-center bg-white w-[90%] h-16 mr-2 rounded-2xl"
+                onClick={() => {
+                  selectClick(localStorage.getItem("sign2"));
+                  onDismiss();
+                }}
+              >
+                <div className="w-full h-full relative">
+                  <Image
+                    src={image2}
+                    alt="sign2"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </button>
               <button
                 type="button"
                 onClick={() => {
@@ -59,9 +86,22 @@ export const SelectSign = ({ isOpen, onDismiss, buttonClick }) => {
           )}
           {image3 && (
             <li className="flex mb-2">
-              <div className="flex justify-center items-center bg-white w-[90%] h-16 mr-2 rounded-2xl">
-                <img src={image3} className="object-cover h-full" />
-              </div>
+              <button
+                className="flex justify-center items-center bg-white w-[90%] h-16 mr-2 rounded-2xl"
+                onClick={() => {
+                  selectClick(localStorage.getItem("sign3"));
+                  onDismiss();
+                }}
+              >
+                <div className="w-full h-full relative">
+                  <Image
+                    src={image3}
+                    alt="sign3"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </button>
               <button
                 type="button"
                 onClick={() => {

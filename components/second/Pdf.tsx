@@ -27,6 +27,9 @@ export const Pdf = () => {
 
   const [signList, setSignList] = useState(false);
   const [createSign, setCreateSign] = useState(false);
+  const [currentSign, setCurrentSign] = useState("");
+  const [selectSign, setSelectSign] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const divRef = useRef<HTMLDivElement | null>(null);
   const pageRef = useRef<Map<number, string>>(new Map());
@@ -34,7 +37,7 @@ export const Pdf = () => {
 
   const pagePosition = useMemo(() => {
     const postionArray: number[] = [];
-    pageRef.current.forEach(item => {
+    pageRef.current.forEach((item) => {
       postionArray.push(Number(item));
     });
     return postionArray;
@@ -50,7 +53,7 @@ export const Pdf = () => {
     }
   };
 
-  const pasteSign = e => {
+  const pasteSign = (e) => {
     console.log("eeeeeee", e);
   };
 
@@ -58,11 +61,11 @@ export const Pdf = () => {
     <div
       className="w-full flex justify-center h-screen overflow-scroll bg-[#f0f0f0] scroll-smooth"
       ref={divRef}
-      onScroll={e => {
+      onScroll={(e) => {
         if (!butterRef.current) return;
         const currentPositon = (e.target as Element).scrollTop;
         const readedQuantity = pagePosition.filter(
-          item => item < currentPositon
+          (item) => item < currentPositon
         );
         if (readedQuantity.length === 0) {
           setCurrentPages(1);
@@ -70,13 +73,13 @@ export const Pdf = () => {
         }
         setCurrentPages(readedQuantity.length);
       }}
-      onClick={e => {
+      onClick={(e) => {
         pasteSign(e);
       }}
     >
       <Document
         file={pdf}
-        className="pb-28"
+        className="cursor-none pb-28"
         onLoadSuccess={({ numPages }) => {
           setTotalPages(numPages);
         }}
@@ -86,6 +89,15 @@ export const Pdf = () => {
             <Button onClick={() => router.push("/f2eSecond")}>回到首頁</Button>
           </div>
         }
+        onMouseMove={(e) => {
+          if (!currentSign) return;
+          setSelectSign(true);
+          setMousePosition({ x: e.clientX, y: e.clientY });
+        }}
+        onMouseLeave={() => {
+          if (!currentSign) return;
+          setSelectSign(false);
+        }}
       >
         {Array.from({ length: totalPages }, (_item, index) => (
           <Page
@@ -94,7 +106,6 @@ export const Pdf = () => {
             ref={setPageRef(index + 1)}
             renderAnnotationLayer={false}
             renderTextLayer={false}
-            renderMode="svg"
           />
         ))}
       </Document>
@@ -176,6 +187,7 @@ export const Pdf = () => {
         isOpen={signList}
         onDismiss={() => setSignList(false)}
         buttonClick={() => setCreateSign(true)}
+        selectClick={(item) => setCurrentSign(item)}
       />
       <CreateSign
         isOpen={createSign}
@@ -183,6 +195,22 @@ export const Pdf = () => {
         clientX={divRef.current?.clientWidth}
         clientY={divRef.current?.clientHeight}
       />
+      {selectSign && (
+        <div
+          className="w-[256px] h-16 absolute bg-white pointer-events-none"
+          style={{
+            top: `${mousePosition.y - 32}px`,
+            left: `${mousePosition.x - 128}px`,
+          }}
+        >
+          <NextImage
+            src={currentSign}
+            alt="currentSign"
+            fill
+            className=" object-cover"
+          />
+        </div>
+      )}
     </div>
   );
 };
