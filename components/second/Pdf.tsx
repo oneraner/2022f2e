@@ -13,7 +13,7 @@ import text from "../../public/image/text.svg";
 import Button from "./Button";
 import CreateSign from "./CreateSign";
 import SelectSign from "./SelectSign";
-import ViewPdf from "./viewPdf";
+import ViewPdf from "./ViewPdf";
 import jsPDF from "jspdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
@@ -24,9 +24,6 @@ export const Pdf = () => {
   const [currentPages, setCurrentPages] = useState(1);
   const [signList, setSignList] = useState(false);
   const [createSign, setCreateSign] = useState(false);
-  const [currentSign, setCurrentSign] = useState("");
-  const [selectSign, setSelectSign] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const divRef = useRef<HTMLDivElement | null>(null);
 
@@ -131,7 +128,6 @@ export const Pdf = () => {
         isOpen={signList}
         onDismiss={() => setSignList(false)}
         buttonClick={() => setCreateSign(true)}
-        selectClick={(item) => setCurrentSign(item)}
       />
       <CreateSign
         isOpen={createSign}

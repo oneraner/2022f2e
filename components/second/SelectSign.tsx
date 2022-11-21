@@ -3,8 +3,10 @@ import Modal from "./Modal";
 import Image from "next/image";
 import del from "../../public/image/delete.svg";
 import { useEffect, useState } from "react";
+import usePdfStore from "../../zustand/store";
 
-export const SelectSign = ({ isOpen, onDismiss, buttonClick, selectClick }) => {
+export const SelectSign = ({ isOpen, onDismiss, buttonClick}) => {
+  const {setCurrentSign} = usePdfStore()
   const [image1, setImage1] = useState(localStorage.getItem("sign1") ?? "");
   const [image2, setImage2] = useState(localStorage.getItem("sign2") ?? "");
   const [image3, setImage3] = useState(localStorage.getItem("sign3") ?? "");
@@ -31,7 +33,7 @@ export const SelectSign = ({ isOpen, onDismiss, buttonClick, selectClick }) => {
               <button
                 className="flex justify-center items-center bg-white w-[90%] h-16 mr-2 rounded-2xl"
                 onClick={() => {
-                  selectClick(localStorage.getItem("sign1"));
+                 setCurrentSign(localStorage.getItem("sign1") ?? '');
                   onDismiss();
                 }}
               >
@@ -60,7 +62,7 @@ export const SelectSign = ({ isOpen, onDismiss, buttonClick, selectClick }) => {
               <button
                 className="flex justify-center items-center bg-white w-[90%] h-16 mr-2 rounded-2xl"
                 onClick={() => {
-                  selectClick(localStorage.getItem("sign2"));
+                 setCurrentSign(localStorage.getItem("sign2") ?? '');
                   onDismiss();
                 }}
               >
@@ -89,7 +91,7 @@ export const SelectSign = ({ isOpen, onDismiss, buttonClick, selectClick }) => {
               <button
                 className="flex justify-center items-center bg-white w-[90%] h-16 mr-2 rounded-2xl"
                 onClick={() => {
-                  selectClick(localStorage.getItem("sign3"));
+                 setCurrentSign(localStorage.getItem("sign3") ?? '');
                   onDismiss();
                 }}
               >
