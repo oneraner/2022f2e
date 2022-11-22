@@ -1,8 +1,12 @@
+import dynamic from "next/dynamic";
 import NextImage from "next/image";
 import { useRouter } from "next/router";
 import { useMemo, useState } from "react";
-import DndComponent from "../components/third/DndComponent";
 import leftArrow from "../public/image/thirdLeftArrow.svg";
+
+const DndComponent = dynamic(() => import("../components/third/DndComponent"), {
+  ssr: false,
+});
 
 export enum DndType {
   NOPOINT = "nopoint",
