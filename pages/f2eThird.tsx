@@ -3,7 +3,7 @@ import { TextModule } from "../components/third/TextModule";
 import NextImage from "next/image";
 import king from "../public/image/thirdKing.png";
 import po from "../public/image/thirdPo.png";
-import poHand from "../public/image/thirdPoHand.png";
+import poHand from "../public/image/thirdPohand.png";
 import leftArrow from "../public/image/thirdLeftArrow.svg";
 import { useRouter } from "next/router";
 
@@ -32,17 +32,17 @@ export const F2eThird = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center relative">
+      <div className="relative flex flex-col items-center">
         <div className="w-full pt-6 pl-6">
           {type !== Type.START && (
-            <button type="button" className="flex justify-center items-center">
+            <button type="button" className="flex items-center justify-center">
               <NextImage
                 src={leftArrow}
                 alt="leftArrow"
                 onClick={() => {
                   const typeList = Object.values(Type);
                   const currentTypeIndex = typeList.findIndex(
-                    (item) => item === type
+                    item => item === type
                   );
                   setType(typeList[currentTypeIndex - 1]);
                 }}
@@ -52,9 +52,9 @@ export const F2eThird = () => {
           )}
         </div>
         <div className="w-full max-w-[1200px] pt-20">
-          <div className="bg-[#E0E0E0] rounded-3xl h-6 relative mb-14">
+          <div className="relative mb-14 h-6 rounded-3xl bg-[#E0E0E0]">
             <div
-              className={`absolute top-0 left-0 bg-[#FFCB2D] h-6 rounded-3xl ${progress}`}
+              className={`absolute top-0 left-0 h-6 rounded-3xl bg-[#FFCB2D] ${progress}`}
             />
           </div>
           <TextModule
@@ -62,7 +62,7 @@ export const F2eThird = () => {
             buttonClick={() => {
               const typeList = Object.values(Type);
               const currentTypeIndex = typeList.findIndex(
-                (item) => item === type
+                item => item === type
               );
               currentTypeIndex === typeList.length - 1
                 ? router.push("/dragAndDrop")
