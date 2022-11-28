@@ -25,18 +25,28 @@ Modal Moudle 優化
 
 user flow 優化
 
+第三周 /f2eThird
+
+由於寫一半就被隕石砸中，去趕公司專案了，只好爛尾，QQ
+
 ### 系統說明
 
 npm i
+
 npm dev
+
 open http://localhost:3000/
+
+依關卡打開 /f2eFirst or /f2eSecond or /f2eThird
 
 ### 資料夾說明
 
 - components
-  - 放各關用的 component
+  - 依資料夾放各關用的 component
 - page
   - f2eFirst 放第一關 page
+  - f2eSecond 放第二關 page
+  - f2eThird 放第三關 page
 - public
   - font 放字型
   - image 放圖片
@@ -44,6 +54,8 @@ open http://localhost:3000/
   - 放 CSS
 - tailwind.config.js
   - 放 tailwind setting
+- zustand
+  - 放跨元件傳遞的 state
 
 ### 使用技術及套件
 
@@ -73,6 +85,6 @@ jsPDF
 
 第二關設計師：[K-T](https://www.behance.net/KT_Designer)
 
-第三關設計師：
+第三關設計師： [讀書狗狗](https://2022.thef2e.com/users/12061549261446746191)
 
 前端工程師: [Jeff Chao](https://github.com/oneraner)
