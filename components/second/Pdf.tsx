@@ -13,7 +13,7 @@ import text from "../../public/image/text.svg";
 import Button from "./Button";
 import CreateSign from "./CreateSign";
 import SelectSign from "./SelectSign";
-import ViewPdf from "./ViewPdf";
+import ViewPdf from "./viewPdf";
 import jsPDF from "jspdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
